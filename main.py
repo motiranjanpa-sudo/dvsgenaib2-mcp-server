@@ -1,0 +1,35 @@
+import random
+from fastmcp import FastMCP
+
+# Create a FastMCP server instance
+mcp = FastMCP(name="Demo Server")
+
+@mcp.tool()
+def roll_dice(n_dice: int = 1) -> list[int]:
+    """
+    Roll n_dice 6-sided dice and return the results.
+
+    Example:
+    roll_dice(3) may return [2, 5, 1]
+    """
+    return [random.randint(1, 6) for _ in range(n_dice)]
+
+@mcp.tool()
+def add_numbers(a: float, b: float) -> float:
+    """
+    Add two numbers together.
+
+    Example:
+    add_numbers(10, 20) returns 30
+    """
+    return a + b
+
+if __name__ == "__main__":
+    # For remote MCP server, use HTTP transport
+    mcp.run(
+        transport="http",
+        host="0.0.0.0",
+        port=8000,
+    )
+
+
