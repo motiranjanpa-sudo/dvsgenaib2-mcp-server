@@ -315,8 +315,7 @@ def expense_categories() -> str:
 
 
 if __name__ == "__main__":
-    init_db()
-    mcp.run(transport="http",
+      mcp.run(transport="http",
             host="0.0.0.0",
             port=8000
             )
